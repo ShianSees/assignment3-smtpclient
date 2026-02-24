@@ -11,6 +11,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     recv = clientSocket.recv(1024).decode()
     if recv[:3] != '220':
+        return
         
 
     
@@ -20,6 +21,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(heloCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
     if recv1[:3] != '250':
+        return
         
 
     # Send MAIL FROM command and handle server response.
@@ -27,6 +29,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(mailFromCommand.encode())
     recv2 = clientSocket.recv(1024).decode()
     if recv2[:3] != '250':
+        return
         
 
     # Send RCPT TO command and handle server response.
@@ -34,6 +37,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(rcptToCommand.encode())
     recv3 = clientSocket.recv(1024).decode()
     if recv3[:3] != '250':
+        return
         
 
     # Send DATA command and handle server response.
@@ -41,6 +45,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(sendDataCommand.encode())
     recv4 = clientSocket.recv(1024).decode()
     if recv4[:3] != '354':
+        return
         
 
     # Send message data
@@ -50,6 +55,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(endmsg.encode())
     recv5 = clientSocket.recv(1024).decode()
     if recv5[:3] != '250':
+        return
         
 
     # Send QUIT command and handle server response.
@@ -57,6 +63,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket.send(sendQuitCommand.encode())
     recv6 = clientSocket.recv(1024).decode()
     if recv6[:3] != '221':
+        return
         
 
     clientSocket.close()
@@ -65,6 +72,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 if __name__ == '__main__':
 
     smtp_client(1025, '127.0.0.1')
+
 
 
 
