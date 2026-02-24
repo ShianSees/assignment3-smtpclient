@@ -12,7 +12,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv = clientSocket.recv(1024).decode()
     print(recv)
     if recv[:3] != '220':
-        print('220 reply not received from server.')
+       pass
 
     # Send HELO command and print server response.
     heloCommand = 'HELO Alice\r\n'
@@ -20,7 +20,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv1 = clientSocket.recv(1024).decode()
     print(recv1)
     if recv1[:3] != '250':
-        print('250 reply not received from server.')
+        pass
 
     # Send MAIL FROM command and handle server response.
     mailFromCommand = 'MAIL FROM:<bobsburgers@cn.com>\r\n'
@@ -28,7 +28,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv2 = clientSocket.recv(1024).decode()
     print(recv2)
     if recv2[:3] != '250':
-        print('250 reply not received from server.')
+        pass
 
     # Send RCPT TO command and handle server response.
     rcptToCommand = 'RCPT TO:<sushilover@californiaroll.com>\r\n'
@@ -36,7 +36,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv3 = clientSocket.recv(1024).decode()
     print(recv3)
     if recv3[:3] != '250':
-        print('250 reply not received from server.')
+        pass
 
     # Send DATA command and handle server response.
     sendDataCommand = 'DATA\r\n'
@@ -44,7 +44,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv4 = clientSocket.recv(1024).decode()
     print(recv4)
     if recv4[:3] != '354':
-        print('354 reply not received from server.')
+        pass
 
     # Send message data
     clientSocket.send(msg.encode())
@@ -54,7 +54,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv5 = clientSocket.recv(1024).decode()
     print(recv5)
     if recv5[:3] != '250':
-        print('250 reply not received from server after end of data.')
+        pass
 
     # Send QUIT command and handle server response.
     sendQuitCommand = 'QUIT\r\n'
@@ -62,10 +62,11 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv6 = clientSocket.recv(1024).decode()
     print(recv6)
     if recv6[:3] != '221':
-        print('221 reply not received from server.')
+        pass
 
     clientSocket.close()
 
 
 if __name__ == '__main__':
+
     smtp_client(1025, '127.0.0.1')
